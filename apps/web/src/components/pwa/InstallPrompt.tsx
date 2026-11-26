@@ -60,7 +60,7 @@ export function InstallPrompt() {
               console.error('[tnotes] 安装提示失败', error);
             });
         }}
-        className="mt-3 flex w-full items-center justify-center gap-2 rounded-xl bg-primary px-4 py-2 text-[13px] font-medium text-white transition hover:bg-primary-soft"
+        className="mt-3 flex w-full items-center justify-center gap-2 rounded-xl bg-primary px-4 py-2 text-[13px] font-medium text-white transition hover:brightness-110"
       >
         <Download size={15} />
         立即安装

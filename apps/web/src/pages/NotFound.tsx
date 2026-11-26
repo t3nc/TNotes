@@ -9,7 +9,7 @@ export function NotFound() {
       <p className="text-[13px] text-muted">这个地址没有对应的内容。</p>
       <Link
         to="/app"
-        className="rounded-xl bg-primary px-4 py-2 text-[13px] font-medium text-white transition hover:bg-primary-soft"
+        className="rounded-xl bg-primary px-4 py-2 text-[13px] font-medium text-white transition hover:brightness-110"
       >
         回到笔记库
       </Link>

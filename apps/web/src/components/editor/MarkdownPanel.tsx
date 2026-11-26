@@ -60,7 +60,7 @@ export function MarkdownPanel({
         readOnly
         value={markdown}
         spellCheck={false}
-        className="h-[52vh] w-full resize-none rounded-xl border border-line bg-surface2/50 p-3 font-mono text-[13px] leading-relaxed text-text outline-none"
+        className="h-[52vh] w-full resize-none rounded-xl border border-line bg-surface2/60 p-3 font-mono text-[13px] leading-relaxed text-text outline-none"
       />
     </Modal>
   );

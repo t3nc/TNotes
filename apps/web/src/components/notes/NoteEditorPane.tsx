@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { FileText, Heart, RotateCcw, Trash2 } from 'lucide-react';
+import { ChevronDown, FileText, Heart, RotateCcw, Trash2 } from 'lucide-react';
 import type { Editor as EditorInstance } from '@tiptap/core';
 import { Editor } from '../editor/Editor';
 import { EditorToolbar } from '../editor/EditorToolbar';
@@ -174,26 +174,31 @@ export function NoteEditorPane({ noteId }: { noteId: string }) {
       </div>
 
       <div className="flex flex-wrap items-center gap-2 px-4 pb-2 md:px-6">
-        <select
-          value={note.notebookId ?? ''}
-          onChange={(event) => {
-            const value = event.target.value || null;
-            assignNotebook(noteId, value).catch((error: unknown) => {
-              console.error('[tnotes] 设置笔记本失败', error);
-            });
-          }}
-          className="h-7 cursor-pointer rounded-lg border border-line bg-surface2/50 px-2 text-[12px] text-muted outline-none transition hover:border-primary/40 focus:border-primary/60"
-          aria-label="选择笔记本"
-        >
-          <option value="" className="bg-surface">
-            无笔记本
-          </option>
-          {notebooks.map((notebook) => (
-            <option key={notebook.id} value={notebook.id} className="bg-surface">
-              {notebook.name}
-            </option>
-          ))}
-        </select>
+        <span className="relative inline-flex items-center">
+          <select
+            value={note.notebookId ?? ''}
+            onChange={(event) => {
+              const value = event.target.value || null;
+              assignNotebook(noteId, value).catch((error: unknown) => {
+                console.error('[tnotes] 设置笔记本失败', error);
+              });
+            }}
+            className="h-7 w-full cursor-pointer appearance-none rounded-lg border border-line bg-surface2/50 pl-2 pr-7 text-[12px] text-muted outline-none transition hover:border-primary/40 focus:border-primary/60"
+            aria-label="选择笔记本"
+          >
+            <option value="">无笔记本</option>
+            {notebooks.map((notebook) => (
+              <option key={notebook.id} value={notebook.id}>
+                {notebook.name}
+              </option>
+            ))}
+          </select>
+          <ChevronDown
+            size={13}
+            className="pointer-events-none absolute right-2 text-faint"
+            aria-hidden="true"
+          />
+        </span>
 
         <button
           type="button"
@@ -277,7 +282,7 @@ export function NoteEditorPane({ noteId }: { noteId: string }) {
                       console.error('[tnotes] 更新标签失败', error);
                     });
                   }}
-                  className="h-4 w-4 cursor-pointer accent-[rgb(var(--primary))]"
+                  className="ui-checkbox h-4 w-4 cursor-pointer"
                 />
                 <span className="h-2 w-2 rounded-full" style={{ background: tag.color }} />
                 {tag.name}

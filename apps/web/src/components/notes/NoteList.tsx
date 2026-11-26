@@ -1,5 +1,5 @@
 import { useEffect, useMemo } from 'react';
-import { FileText, Plus, Search, SlidersHorizontal } from 'lucide-react';
+import { ChevronDown, FileText, Plus, Search, SlidersHorizontal } from 'lucide-react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useFilterStore } from '../../store/filter';
 import type { SortKey } from '../../store/filter';
@@ -142,21 +142,26 @@ export function NoteList() {
           <select
             value={filter.sort}
             onChange={(event) => filter.setSort(event.target.value as SortKey)}
-            className="h-8 cursor-pointer appearance-none rounded-lg border border-line bg-surface2/60 pl-7 pr-2 text-[12px] text-muted outline-none transition hover:border-primary/40 focus:border-primary/60"
+            className="h-8 cursor-pointer appearance-none rounded-lg border border-line bg-surface2/60 pl-7 pr-7 text-[12px] text-muted outline-none transition hover:border-primary/40 focus:border-primary/60"
             aria-label="排序方式"
           >
             {sortLabels.map((option) => (
-              <option key={option.key} value={option.key} className="bg-surface text-text">
+              <option key={option.key} value={option.key}>
                 {option.label}
               </option>
             ))}
           </select>
+          <ChevronDown
+            size={12}
+            className="pointer-events-none absolute right-2 text-faint"
+            aria-hidden="true"
+          />
         </label>
         <button
           type="button"
           onClick={onCreate}
           aria-label="新建笔记"
-          className="flex h-8 items-center gap-1.5 rounded-lg bg-primary px-2.5 text-[12.5px] font-medium text-white transition hover:bg-primary-soft active:scale-[0.97]"
+          className="flex h-8 items-center gap-1.5 rounded-lg bg-primary px-2.5 text-[12.5px] font-medium text-white transition hover:brightness-110 active:scale-[0.97]"
         >
           <Plus size={15} />
           新建
@@ -178,7 +183,7 @@ export function NoteList() {
                 <button
                   type="button"
                   onClick={onCreate}
-                  className="mt-1 rounded-xl bg-primary px-4 py-2 text-[13px] font-medium text-white transition hover:bg-primary-soft"
+                  className="mt-1 rounded-xl bg-primary px-4 py-2 text-[13px] font-medium text-white transition hover:brightness-110"
                 >
                   新建笔记
                 </button>
