@@ -1,0 +1,23 @@
+{
+  "name": "@tnotes/worker",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev --port 8787 --ip 127.0.0.1",
+    "deploy": "wrangler deploy",
+    "deploy:local-config": "wrangler deploy --config wrangler.local.jsonc",
+    "typecheck": "tsc --noEmit",
+    "db:migrate:local": "wrangler d1 migrations apply tnotes --local",
+    "db:migrate:remote": "wrangler d1 migrations apply tnotes --remote",
+    "db:migrate:remote:local-config": "wrangler d1 migrations apply tnotes --remote --config wrangler.local.jsonc"
+  },
+  "dependencies": {
+    "hono": "^4.6.14"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20250109.0",
+    "typescript": "^5.7.2",
+    "wrangler": "^4.0.0"
+  }
+}

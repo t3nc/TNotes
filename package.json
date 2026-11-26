@@ -1,0 +1,46 @@
+{
+  "name": "tnotes",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "TNotes — 单人使用的端到端加密笔记 Web 应用（Cloudflare Workers + D1）",
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "dev": "concurrently -k -n web,worker -c cyan,magenta \"npm:dev:web\" \"npm:dev:worker\"",
+    "dev:web": "npm run dev --workspace @tnotes/web",
+    "dev:worker": "npm run dev --workspace @tnotes/worker",
+    "build": "npm run build --workspace @tnotes/web",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "lint": "eslint .",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "deploy": "npm run build && npm run deploy --workspace @tnotes/worker",
+    "db:migrate:local": "npm run db:migrate:local --workspace @tnotes/worker",
+    "db:migrate:remote": "npm run db:migrate:remote --workspace @tnotes/worker",
+    "icons": "node scripts/gen-icons.mjs",
+    "test:api": "node scripts/smoke.mjs",
+    "test:e2e": "node scripts/e2e.mjs"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.17.0",
+    "@playwright/test": "^1.65.1",
+    "@types/node": "^22.10.5",
+    "concurrently": "^9.1.2",
+    "eslint": "^9.17.0",
+    "eslint-plugin-react-hooks": "^5.1.0",
+    "eslint-plugin-react-refresh": "^0.4.16",
+    "globals": "^15.14.0",
+    "jsdom": "^31.0.1",
+    "pngjs": "^7.0.0",
+    "typescript": "^5.7.2",
+    "typescript-eslint": "^8.18.2",
+    "vite": "^5.4.11",
+    "vitest": "^2.1.8"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

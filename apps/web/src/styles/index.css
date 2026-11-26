@@ -1,0 +1,192 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg: 12 15 22;
+    --surface: 20 25 36;
+    --surface-2: 28 34 49;
+    --line: 40 47 64;
+    --paper: 247 245 240;
+    --text: 237 240 247;
+    --muted: 166 175 194;
+    --faint: 107 116 136;
+    --ink: 31 36 48;
+    --primary: 124 108 246;
+    --primary-soft: 156 140 255;
+    --primary-deep: 91 79 214;
+    --accent: 240 180 41;
+    --success: 63 178 127;
+    --danger: 229 72 77;
+    --warn: 245 165 36;
+    --info: 59 130 246;
+  }
+
+  html.light {
+    --bg: 247 245 240;
+    --surface: 255 255 255;
+    --surface-2: 240 237 230;
+    --line: 221 215 204;
+    --text: 31 36 48;
+    --muted: 92 100 116;
+    --faint: 138 145 160;
+  }
+
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+
+  body {
+    @apply bg-bg text-text antialiased;
+    font-family: '"Noto Sans"', '"Noto Sans SC"', Inter, system-ui, -apple-system, 'Segoe UI', sans-serif;
+    font-size: 15px;
+    line-height: 1.7;
+    background-image:
+      radial-gradient(900px 520px at 12% -8%, rgb(var(--primary) / 0.16), transparent 62%),
+      radial-gradient(760px 480px at 96% 4%, rgb(var(--accent) / 0.08), transparent 58%);
+    background-attachment: fixed;
+  }
+
+  html.light body {
+    background-image:
+      radial-gradient(900px 520px at 12% -8%, rgb(var(--primary) / 0.12), transparent 62%),
+      radial-gradient(760px 480px at 96% 4%, rgb(var(--accent) / 0.1), transparent 58%);
+  }
+
+  ::selection {
+    background: rgb(var(--primary) / 0.35);
+  }
+
+  * {
+    border-color: rgb(var(--line));
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: rgb(var(--line));
+    border-radius: 999px;
+    border: 3px solid transparent;
+    background-clip: content-box;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgb(var(--faint) / 0.7);
+    background-clip: content-box;
+  }
+}
+
+@layer components {
+  .safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+
+  .safe-top {
+    padding-top: env(safe-area-inset-top, 0px);
+  }
+
+  .glass-panel {
+    @apply border border-line/70 bg-surface/80 backdrop-blur-xl;
+  }
+
+  .note-prose {
+    @apply text-[15px] leading-[1.85] text-text;
+  }
+
+  .note-prose h1 {
+    @apply mb-3 mt-7 text-[26px] font-bold tracking-tight text-text;
+  }
+
+  .note-prose h2 {
+    @apply mb-2 mt-6 text-[21px] font-bold text-text;
+  }
+
+  .note-prose h3 {
+    @apply mb-2 mt-5 text-[18px] font-semibold text-text;
+  }
+
+  .note-prose p {
+    @apply my-3;
+  }
+
+  .note-prose ul {
+    @apply my-3 list-disc pl-6;
+  }
+
+  .note-prose ol {
+    @apply my-3 list-decimal pl-6;
+  }
+
+  .note-prose li {
+    @apply my-1;
+  }
+
+  .note-prose ul[data-type='taskList'] {
+    @apply list-none pl-1;
+  }
+
+  .note-prose ul[data-type='taskList'] li {
+    @apply flex items-start gap-2;
+  }
+
+  .note-prose ul[data-type='taskList'] li > label {
+    @apply mt-[3px] flex-none;
+  }
+
+  .note-prose ul[data-type='taskList'] li > div {
+    @apply flex-1;
+  }
+
+  .note-prose blockquote {
+    @apply my-4 border-l-[3px] border-primary/60 bg-surface2/40 py-2 pl-4 pr-3 text-muted;
+  }
+
+  .note-prose code {
+    @apply rounded-md bg-surface2 px-1.5 py-0.5 font-mono text-[13px] text-accent;
+  }
+
+  .note-prose pre {
+    @apply my-4 overflow-x-auto rounded-xl border border-line bg-surface2/70 p-4 text-[13px] leading-relaxed;
+  }
+
+  .note-prose pre code {
+    @apply bg-transparent p-0 text-text;
+  }
+
+  .note-prose a {
+    @apply text-primary-soft underline underline-offset-4 transition hover:text-accent;
+  }
+
+  .note-prose hr {
+    @apply my-6 border-t border-line;
+  }
+
+  .note-prose img {
+    @apply my-4 max-h-[420px] rounded-xl border border-line;
+  }
+
+  .note-prose p.is-editor-empty:first-child::before {
+    @apply pointer-events-none float-left h-0 text-faint;
+    content: attr(data-placeholder);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
