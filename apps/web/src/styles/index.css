@@ -147,6 +147,47 @@
     @apply flex-1;
   }
 
+  /* 自定义待办复选框：原生 checkbox 在浅色主题下是白底白边，几乎不可见 */
+  .note-prose ul[data-type='taskList'] input[type='checkbox'] {
+    -webkit-appearance: none;
+    appearance: none;
+    display: inline-grid;
+    place-content: center;
+    width: 15px;
+    height: 15px;
+    margin: 0;
+    border: 1.5px solid rgb(var(--muted));
+    border-radius: 4px;
+    background-color: rgb(var(--surface));
+    cursor: pointer;
+    transition:
+      background-color 0.15s ease,
+      border-color 0.15s ease;
+  }
+
+  .note-prose ul[data-type='taskList'] input[type='checkbox']:hover {
+    border-color: rgb(var(--primary));
+  }
+
+  .note-prose ul[data-type='taskList'] input[type='checkbox']:checked {
+    background-color: rgb(var(--primary));
+    border-color: rgb(var(--primary));
+  }
+
+  .note-prose ul[data-type='taskList'] input[type='checkbox']:checked::after {
+    content: '';
+    width: 8px;
+    height: 4px;
+    border-left: 2px solid #fff;
+    border-bottom: 2px solid #fff;
+    transform: translateY(-1px) rotate(-45deg);
+  }
+
+  .note-prose ul[data-type='taskList'] input[type='checkbox']:focus-visible {
+    outline: 2px solid rgb(var(--primary) / 0.55);
+    outline-offset: 2px;
+  }
+
   .note-prose blockquote {
     @apply my-4 border-l-[3px] border-primary/60 bg-surface2/40 py-2 pl-4 pr-3 text-muted;
   }

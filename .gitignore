@@ -9,6 +9,7 @@ coverage/
 .wrangler-*/
 apps/worker/wrangler.local.jsonc
 *.local.jsonc
+wrangler.*.jsonc
 
 # 本地环境变量（含初始化令牌等凭据）
 .dev.vars
